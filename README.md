@@ -1,4 +1,4 @@
-Author: Christian Torres
+Author: Christian Torres <ctorres@clov3rlabs.com> @chrux
 
 Introduction
 ------------
