@@ -24,6 +24,22 @@ class Configuration implements ConfigurationInterface
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
 
+        $rootNode
+            ->children()
+                ->arrayNode('container')
+                    ->children()
+                        ->scalarNode('name')->defaultValue(null)->end()
+                        ->scalarNode('region')->defaultValue(null)->end()   # Can be DFW o ORD
+                    ->end()
+                ->end()
+                ->arrayNode('auth')
+                    ->children()
+                        ->scalarNode('apikey')->defaultValue(null)->end()
+                        ->scalarNode('username')->defaultValue(null)->end()
+                        ->scalarNode('endpoint')->defaultValue('US')->end()     # Can be US (default) or UK
+                    ->end()
+                ->end();
+
         return $treeBuilder;
     }
 }
