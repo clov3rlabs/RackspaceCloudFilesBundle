@@ -1,4 +1,11 @@
 <?php
+/**
+ * This file is part of the Clov3rLabs/RackspaceCloudFilesBundle package
+ *
+ * (c) 2013 Clov3r Labs
+ *
+ * 2013-03-13 16:39
+ */
 
 namespace Clov3rLabs\RackspaceCloudFilesBundle\DependencyInjection;
 
@@ -9,6 +16,12 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * This is the class that validates and merges configuration from your app/config files
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
+ *
+ * @package Clov3rLabs\RackspaceCloudFilesBundle
+ *
+ * @author Christian Torres <ctorres@clov3rlabs.com>
+ *
+ * @version 0.0.4
  */
 class Configuration implements ConfigurationInterface
 {
@@ -37,6 +50,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('apikey')->defaultValue(null)->end()
                         ->scalarNode('username')->defaultValue(null)->end()
                         ->scalarNode('endpoint')->defaultValue('US')->end()     # Can be US (default) or UK
+                        ->scalarNode('region')->defaultValue('ORD')->end()     # Can be ORD (default) or DFW
                     ->end()
                 ->end();
 

@@ -9,6 +9,7 @@
 
 namespace Clov3rLabs\RackspaceCloudFilesBundle;
 
+use Clov3rLabs\RackspaceCloudFilesBundle\Service\RackspaceCloudFilesService;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Clov3rLabs\RackspaceCloudFilesBundle\StreamWrapper\RackspaceCloudFilesStreamWrapper;
 
@@ -33,7 +34,7 @@ class Clov3rLabsRackspaceCloudFilesBundle extends Bundle
     {
         parent::boot();
 
-        RackspaceCloudFilesStreamWrapper::registerStreamWrapperClass();
+        RackspaceCloudFilesStreamWrapper::registerStreamWrapperClass($this->container->get('clov3r_labs_rackspace_cloud_files.service'));
     }
 
     /**
