@@ -15,6 +15,7 @@
                 <argument key="apikey">%clov3r_labs_rackspace_cloud_files.auth.apikey%</argument>
                 <argument key="endpoint">%clov3r_labs_rackspace_cloud_files.auth.endpoint%</argument>
                 <argument key="region">%clov3r_labs_rackspace_cloud_files.auth.region%</argument>
+                <argument key="notification_mail">%clov3r_labs_rackspace_cloud_files.notification_mail%</argument>
             </argument>
         </service>
     </services>

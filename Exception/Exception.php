@@ -7,7 +7,7 @@
  * 2013-03-13 16:07
  */
 
-namespace Clov3rLabs\RackspaceCloudFilesBundle\StreamWrapper\Exception;
+namespace Clov3rLabs\RackspaceCloudFilesBundle\Exception;
 
 class Exception extends \Exception {
 

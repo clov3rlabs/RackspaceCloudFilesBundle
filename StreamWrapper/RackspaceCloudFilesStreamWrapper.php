@@ -12,7 +12,7 @@ namespace Clov3rLabs\RackspaceCloudFilesBundle\StreamWrapper;
 use Clov3rLabs\RackspaceCloudFilesBundle\Service\RackspaceCloudFilesService;
 use Clov3rLabs\RackspaceCloudFilesBundle\Service\RackspaceCloudFilesResource;
 use Clov3rLabs\RackspaceCloudFilesBundle\StreamWrapper\StreamWrapperInterface;
-use Clov3rLabs\RackspaceCloudFilesBundle\StreamWrapper\Exception\NotImplementedException;
+use Clov3rLabs\RackspaceCloudFilesBundle\Exception\NotImplementedException;
 
 /**
  * Clov3rLabs\RackspaceCloudFilesBundle\StreamWrapper\RackspaceCloudFilesStreamWrapper.php
@@ -215,16 +215,25 @@ class RackspaceCloudFilesStreamWrapper implements StreamWrapperInterface {
 
     function rename($path_from, $path_to)
     {
-        throw new NotImplementedException(__FUNCTION__);
+        if ( !$this->initFromPath($path_from) ) {
+            return false;
+        }
 
-        return true;
+        return $this->getResource()->move($path_to);
     }
 
     function rmdir($path, $options)
     {
-        throw new NotImplementedException(__FUNCTION__);
+        if ( !$this->initFromPath($path) ) {
+            return false;
+        }
 
-        return true;
+        $recursively = false;
+        if ( $options === STREAM_MKDIR_RECURSIVE ) {
+            $recursively = true;
+        }
+
+        return $this->getResource()->remove(true, $recursively);
     }
 
     function stream_cast($cast_as)
@@ -330,9 +339,11 @@ class RackspaceCloudFilesStreamWrapper implements StreamWrapperInterface {
 
     function unlink($path)
     {
-        throw new NotImplementedException(__FUNCTION__);
+        if ( !$this->initFromPath($path) ) {
+            return false;
+        }
 
-        return true;
+        return $this->getResource()->remove();
     }
 
     function url_stat($path, $flags)

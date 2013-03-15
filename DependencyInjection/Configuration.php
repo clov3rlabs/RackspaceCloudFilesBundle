@@ -39,6 +39,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('notification_mail')->defaultValue(null)->end()
                 ->arrayNode('container')
                     ->children()
                         ->scalarNode('name')->defaultValue(null)->end()

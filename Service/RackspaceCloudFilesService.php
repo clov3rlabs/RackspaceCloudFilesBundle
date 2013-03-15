@@ -36,7 +36,6 @@ class RackspaceCloudFilesService {
     public function __construct($params)
     {
         self::$params = $params;
-        //echo $username . ' ' . $apikey . ' ' . $region . "\n";
     }
 
     /**

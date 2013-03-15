@@ -7,9 +7,9 @@
  * 2013-03-13 15:47
  */
 
-namespace Clov3rLabs\RackspaceCloudFilesBundle\StreamWrapper\Exception;
+namespace Clov3rLabs\RackspaceCloudFilesBundle\Exception;
 
 
-class NotImplementedException extends Exception {
+class FileExistsException extends Exception {
 
 }
