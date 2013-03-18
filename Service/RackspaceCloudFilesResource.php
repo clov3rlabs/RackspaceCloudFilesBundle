@@ -308,7 +308,7 @@ class RackspaceCloudFilesResource {
      */
     public function exists()
     {
-        return (bool)$this->object->CDNUrl();
+        return (bool)$this->object->Name();
     }
 
     /**
@@ -320,7 +320,11 @@ class RackspaceCloudFilesResource {
     {
         $content_length = 0;
         if ( $this->exists() ) {
-            $content_length = (int)$this->object->bytes;
+            if ( $this->object->content_type == self::$directory_type ) {
+                $content_length = 2;
+            } else {
+                $content_length = (int)$this->object->bytes;
+            }
         }
 
         return $content_length;
@@ -339,6 +343,25 @@ class RackspaceCloudFilesResource {
         }
 
         return $last_modified;
+    }
+
+    /**
+     * Return content type if exists or false otherwise
+     *
+     * @return bool|string
+     */
+    public function getContentType()
+    {
+        if ( $this->exists() ) {
+            return $this->object->content_type;
+        }
+
+        return false;
+    }
+
+    public function isDir()
+    {
+        return ( $this->object->content_type == self::$directory_type ) ;
     }
 
     /**

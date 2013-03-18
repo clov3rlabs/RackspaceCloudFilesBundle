@@ -371,6 +371,12 @@ class RackspaceCloudFilesStreamWrapper implements StreamWrapperInterface {
             'blocks'  => -1,
         );
 
+        if ( ! $this->getResource()->isDir() ) {
+            $stat['mode'] |= 0100000;
+        } else {
+            $stat['mode'] |= 040000;
+        }
+
         $this->reset();
 
         return $stat;
