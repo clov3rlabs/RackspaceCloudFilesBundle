@@ -38,12 +38,6 @@ class Clov3rLabsRackspaceCloudFilesExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        // To load parameters and leave them accessible
-        if ( array_key_exists('notification_mail', $config) && !empty($config['notification_mail']) ) {
-            $container->setParameter($this->getAlias() . '.notification_mail', $config['notification_mail']);
-        } else {
-            $container->setParameter($this->getAlias() . '.notification_mail', null);
-        }
         foreach ($config['auth'] as $key => $value) {
             $container->setParameter($this->getAlias() . '.auth.' . $key, $value);
         }

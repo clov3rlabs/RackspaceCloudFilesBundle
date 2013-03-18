@@ -33,13 +33,6 @@ class RackspaceCloudFilesResource {
     private $container = null;
 
     /**
-     * Notification Email, We use to notify when file was purge
-     *
-     * @var null
-     */
-    private $notification_mail = null;
-
-    /**
      *
      * @param string $path
      */
@@ -196,7 +189,6 @@ class RackspaceCloudFilesResource {
         $status = true;
 
         if ( $this->exists() ) {
-            $this->object->PurgeCDN($this->notification_mail);
             $this->object = null;
             $this->object = $this->container->DataObject();
         }
@@ -367,26 +359,6 @@ class RackspaceCloudFilesResource {
     public function isDir()
     {
         return ( $this->object->content_type == self::$directory_type ) ;
-    }
-
-    /**
-     * Set the notification mail address
-     *
-     * @param null|string $notification_mail
-     */
-    public function setNotificationMail($notification_mail)
-    {
-        $this->notification_mail = $notification_mail;
-    }
-
-    /**
-     * Get the notification mail address
-     *
-     * @return null|string
-     */
-    public function getNotificationMail()
-    {
-        return $this->notification_mail;
     }
 
 }
