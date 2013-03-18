@@ -23,7 +23,7 @@ use Clov3rLabs\RackspaceCloudFilesBundle\Exception\NotImplementedException;
  *
  * @author Christian Torres <ctorres@clov3rlabs.com>
  *
- * @version 0.0.2
+ * @version 0.0.4
  */
 class RackspaceCloudFilesStreamWrapper implements StreamWrapperInterface {
 
@@ -37,6 +37,8 @@ class RackspaceCloudFilesStreamWrapper implements StreamWrapperInterface {
 
     /**
      * Registers the stream wrapper to handle the specified protocol rscf
+     *
+     * @param $service RackspaceCloudFilesService
      */
     public static function registerStreamWrapperClass(RackspaceCloudFilesService $service)
     {

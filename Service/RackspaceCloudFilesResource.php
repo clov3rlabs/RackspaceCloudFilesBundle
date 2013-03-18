@@ -19,7 +19,7 @@ use Clov3rLabs\RackspaceCloudFilesBundle\Exception\FileExistsException;
  *
  * @author Christian Torres <ctorres@clov3rlabs.com>
  *
- * @version 0.0.1
+ * @version 0.0.6
  */
 class RackspaceCloudFilesResource {
 
@@ -75,16 +75,31 @@ class RackspaceCloudFilesResource {
         return $this;
     }
 
+    /**
+     * Return the container name
+     *
+     * @return mixed
+     */
     public function getContainerName()
     {
         return $this->container_name;
     }
 
+    /**
+     * Return the path
+     *
+     * @return mixed
+     */
     public function getPath()
     {
         return $this->path;
     }
 
+    /**
+     * Return a clean path
+     *
+     * @return string
+     */
     public function getResourceName()
     {
         return $this->cleanName($this->path);
@@ -106,7 +121,9 @@ class RackspaceCloudFilesResource {
     /**
      * Set the variable given to the $object property
      *
-     * @param object $object
+     * @param $object \OpenCloud\ObjectStore\DataObject
+     *
+     * @return void
      */
     public function setObject($object)
     {
@@ -123,16 +140,31 @@ class RackspaceCloudFilesResource {
         return $this->object;
     }
 
+    /**
+     * Get the container object
+     *
+     * @return null|\OpenCloud\ObjectStore\Container
+     */
     public function getContainer()
     {
         return $this->container;
     }
 
+    /**
+     * Set the container object
+     *
+     * @param $container null|\OpenCloud\ObjectStore\Container
+     */
     public function setContainer($container)
     {
         $this->container = $container;
     }
 
+    /**
+     * Create object as a Directory
+     *
+     * @return bool
+     */
     public function createAsDirectory()
     {
         $status = true;
@@ -152,6 +184,13 @@ class RackspaceCloudFilesResource {
         return $status;
     }
 
+    /**
+     * Create object from a string/buffer
+     *
+     * @param $buffer
+     *
+     * @return bool
+     */
     public function createAsFileFromBuffer($buffer)
     {
         $status = true;
@@ -178,15 +217,27 @@ class RackspaceCloudFilesResource {
     }
 
     /**
+     * Create object from a local file
      *
+     * @param $filename string
+     *
+     * @return void
+     */
+    public function createAsFileFromFile($filename)
+    {
+
+    }
+
+    /**
+     * Remove object
      *
      * @param bool $is_dir An optional parameter needed if you want to delete a directory
      * @param bool $recursively An optional parameter needed if you want to delete a directory and its content
+     *
      * @return bool
      */
     public function remove($is_dir = false, $recursively = false)
     {
-        $status = false;
         // Directory can exists or not, they are optionals
         if ( $is_dir ) {
             $content = $this->container->ObjectList(array(
@@ -196,7 +247,7 @@ class RackspaceCloudFilesResource {
 
             // If it has content we have to check if we can delete the files inside
             if ( $content->Size() > 1 && !$recursively ) {
-                return $status;
+                return false;
             }
 
             // First, Deleting the content if it has
@@ -217,6 +268,15 @@ class RackspaceCloudFilesResource {
         return false;
     }
 
+    /**
+     * Move/Rename a object
+     *
+     * @param $path_to
+     * @param bool $overwrite
+     *
+     * @return bool
+     * @throws \Clov3rLabs\RackspaceCloudFilesBundle\Exception\FileExistsException
+     */
     public function move($path_to, $overwrite = false)
     {
         $target = null;
@@ -241,11 +301,21 @@ class RackspaceCloudFilesResource {
         $this->setObject($target);
     }
 
+    /**
+     * Check if object exists in CDN
+     *
+     * @return bool
+     */
     public function exists()
     {
         return (bool)$this->object->CDNUrl();
     }
 
+    /**
+     * Get content length or object size
+     *
+     * @return int
+     */
     public function getContentLength()
     {
         $content_length = 0;
@@ -256,6 +326,11 @@ class RackspaceCloudFilesResource {
         return $content_length;
     }
 
+    /**
+     * Return last modified date
+     *
+     * @return int
+     */
     public function getLastModified()
     {
         $last_modified = 0;
@@ -267,7 +342,9 @@ class RackspaceCloudFilesResource {
     }
 
     /**
-     * @param null $notification_mail
+     * Set the notification mail address
+     *
+     * @param null|string $notification_mail
      */
     public function setNotificationMail($notification_mail)
     {
@@ -275,7 +352,9 @@ class RackspaceCloudFilesResource {
     }
 
     /**
-     * @return null
+     * Get the notification mail address
+     *
+     * @return null|string
      */
     public function getNotificationMail()
     {

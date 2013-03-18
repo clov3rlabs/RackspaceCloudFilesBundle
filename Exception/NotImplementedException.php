@@ -9,7 +9,17 @@
 
 namespace Clov3rLabs\RackspaceCloudFilesBundle\Exception;
 
-
+/**
+ * Class NotImplementedException
+ *
+ * A exception when the method is not implemented
+ *
+ * @package Clov3rLabs\RackspaceCloudFilesBundle\Exception
+ *
+ * @author Christian Torres <ctorres@clov3rlabs.com>
+ *
+ * @version 0.0.1
+ */
 class NotImplementedException extends Exception {
 
 }

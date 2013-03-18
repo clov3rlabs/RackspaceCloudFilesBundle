@@ -19,7 +19,7 @@ namespace Clov3rLabs\RackspaceCloudFilesBundle\StreamWrapper;
  *
  * @author Christian Torres <ctorres@clov3rlabs.com>
  *
- * @version 0.0.1
+ * @version 1.0.0
  */
 interface StreamWrapperInterface {
 

@@ -18,7 +18,7 @@ use OpenCloud\Rackspace;
  *
  * @author Christian Torres <ctorres@clov3rlabs.com>
  *
- * @version 0.0.6
+ * @version 0.0.7
  */
 class RackspaceCloudFilesService {
 
@@ -112,6 +112,11 @@ class RackspaceCloudFilesService {
         return $resource;
     }
 
+    /**
+     * @param $container_name
+     *
+     * @return bool
+     */
     public function apiGetContainer($container_name)
     {
         if ( !$this->getConnection() ) {
@@ -128,8 +133,9 @@ class RackspaceCloudFilesService {
 
     /**
      * @param $container
-     * @param string$object_name
-     * @return \stdClass
+     * @param $object_name string
+     *
+     * @return \OpenCloud\ObjectStore\DataObject
      */
     public function apiGetObjectByContainer($container, $object_name)
     {

@@ -9,6 +9,17 @@
 
 namespace Clov3rLabs\RackspaceCloudFilesBundle\Exception;
 
+/**
+ * Class Exception
+ *
+ * A exception base/common clase
+ *
+ * @package Clov3rLabs\RackspaceCloudFilesBundle\Exception
+ *
+ * @author Christian Torres <ctorres@clov3rlabs.com>
+ *
+ * @version 0.0.1
+ */
 class Exception extends \Exception {
 
 }
