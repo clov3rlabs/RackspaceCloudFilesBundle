@@ -245,7 +245,7 @@ class RackspaceCloudFilesStreamWrapper implements StreamWrapperInterface {
 
     function stream_close()
     {
-        if ($this->getOnWriteDataMode()) {
+        if ( $this->isOnWriteMode() ) {
             $this->stream_flush();
         }
 
@@ -266,6 +266,7 @@ class RackspaceCloudFilesStreamWrapper implements StreamWrapperInterface {
         }
 
         $status = $this->getResource()->createAsFileFromBuffer($this->getBuffer());
+        $this->setOnWriteMode(false);
 
         return $status;
     }
