@@ -359,6 +359,11 @@ class RackspaceCloudFilesResource {
         return false;
     }
 
+    /**
+     * Detect if it's dir or not
+     *
+     * @return bool
+     */
     public function isDir()
     {
         return ( $this->object->content_type == self::$directory_type ) ;
